@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe66d">
+<title>Hieee — A Little Happiness ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&family=Pacifico&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #fff8e9;
+  overflow-x: hidden;
+  color: #574333;
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+/* Decorations */
+
+.sticker {
+  position: absolute;
+  font-size: 30px;
+  animation: float 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  50% { transform: translateY(-15px) rotate(10deg); }
+}
+
+/* INTRO */
+
+#intro {
+  min-height: 100svh;
+  background: #ffe66d;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 25px;
+}
+
+.intro-content { z-index: 2; }
+
+.intro-content h1 {
+  font-family: Pacifico, cursive;
+  font-size: clamp(55px, 12vw, 95px);
+  color: #65472e;
+  transform: rotate(-4deg);
+  margin-bottom: 15px;
+}
+
+.intro-content p {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.start-btn {
+  background: #fffaf0;
+  border: 3px solid #65472e;
+  border-radius: 50px;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #65472e;
+  box-shadow: 5px 6px 0 #65472e;
+  transition: .2s;
+}
+
+.start-btn:active {
+  transform: translate(4px,4px);
+  box-shadow: 1px 2px 0 #65472e;
+}
+
+.intro-decoration {
+  position: absolute;
+  border: 3px dashed #fff8dc;
+  border-radius: 50%;
+  width: 190px;
+  height: 190px;
+  top: -60px;
+  left: -50px;
+}
+
+/* CAT SCENE */
+
+#catScene {
+  height: 100svh;
+  background: #fff2b8;
+  position: relative;
+  overflow: hidden;
+  display: none;
+}
+
+.cat-heading {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  font-family: Pacifico, cursive;
+  font-size: clamp(25px, 6vw, 43px);
+  z-index: 5;
+}
+
+.cat-subtitle {
+  position: absolute;
+  top: 18%;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  z-index: 5;
+}
+
+.cat-photo {
+  position: absolute;
+  width: clamp(125px, 32vw, 220px);
+  height: clamp(125px, 32vw, 220px);
+  object-fit: cover;
+  object-position: center;
+  border: 7px solid white;
+  border-radius: 48% 52% 42% 58%;
+  box-shadow: 0 10px 25px #765b3c35;
+  z-index: 4;
+  left: 10%;
+  top: 45%;
+  animation: catRun 5s ease-in-out forwards;
+}
+
+@keyframes catRun {
+  0% { left: -35%; top: 43%; transform: rotate(-10deg); }
+  20% { left: 65%; top: 35%; transform: rotate(12deg); }
+  40% { left: 55%; top: 65%; transform: rotate(-10deg); }
+  60% { left: 5%; top: 60%; transform: rotate(12deg); }
+  80% { left: 45%; top: 30%; transform: rotate(-10deg); }
+  100% { left: 110%; top: 45%; transform: rotate(15deg); }
+}
+
+.yarn {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 5px, #ffffff80 6px 8px),
+    repeating-linear-gradient(-45deg, transparent 0 7px, #b53d75 8px 10px),
+    #ee82aa;
+  box-shadow: inset -8px -8px 15px #a83d6550,
+              0 5px 15px #a83d6530;
+  left: 45%;
+  top: 58%;
+  z-index: 3;
+  transform: scale(1);
+  transition: transform 5s cubic-bezier(.2,.7,.3,1);
+}
+
+.yarn::after {
+  content: "";
+  position: absolute;
+  width: 75px;
+  height: 4px;
+  background: #e78caf;
+  top: 50%;
+  left: 25px;
+  transform: rotate(35deg);
+  border-radius: 10px;
+}
+
+.yarn.grow {
+  transform: scale(55);
+}
+
+.paw {
+  position: absolute;
+  font-size: 25px;
+  opacity: .5;
+  animation: pawFloat 1s infinite alternate;
+}
+
+@keyframes pawFloat {
+  to { transform: translateY(-10px) rotate(15deg); }
+}
+
+/* REVEAL */
+
+#reveal {
+  min-height: 100svh;
+  background: #fff0ed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  animation: slideDown 1.2s ease;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#reveal h1 {
+  font-family: Pacifico, cursive;
+  font-size: clamp(36px, 9vw, 65px);
+  color: #b96f86;
+  margin-bottom: 18px;
+}
+
+#reveal p {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.reveal-heart {
+  font-size: 65px;
+  margin: 20px;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.2); }
+}
+
+.next-btn {
+  background: #d98ca0;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 40px;
+  font-weight: 800;
+  font-size: 16px;
+  margin-top: 30px;
+  box-shadow: 0 5px 15px #d98ca055;
+}
+
+/* MUSIC */
+
+#music {
+  display: none;
+  min-height: 100svh;
+  background: #e9dff4;
+  padding: 70px 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#music h1 {
+  font-family: Pacifico, cursive;
+  font-size: clamp(35px, 8vw, 55px);
+  color: #745a8d;
+  margin-bottom: 12px;
+}
+
+#music p {
+  font-weight: 700;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.spotify {
+  width: min(100%, 500px);
+  height: 352px;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px #72548a30;
+}
+
+.music-next {
+  margin-top: 28px;
+  background: #846b9e;
+}
+
+/* GARDEN */
+
+#garden {
+  display: none;
+  min-height: 100svh;
+  background: #e4f5d8;
+  padding: 65px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#garden h1 {
+  font-family: Pacifico, cursive;
+  font-size: clamp(35px, 8vw, 55px);
+  color: #537c51;
+}
+
+.garden-text {
+  margin: 15px auto 30px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.flowers {
+  font-size: 45px;
+  line-height: 2;
+  animation: float 3s infinite;
+}
+
+.note-container {
+  max-width: 450px;
+  margin: 35px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.note {
+  background: #fffaf0;
+  border: 2px dashed #d8ad87;
+  border-radius: 17px;
+  padding: 22px 12px;
+  min-height: 115px;
+  color: #70563f;
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 5px 12px #0000000a;
+  transition: .3s;
+}
+
+.note:active { transform: scale(.94); }
+
+.note span {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.note-message {
+  display: none;
+  margin-top: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+#final {
+  display: none;
+  min-height: 100svh;
+  background: #ffe5b9;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+#final h1 {
+  font-family: Pacifico, cursive;
+  font-size: clamp(35px, 9vw, 60px);
+  color: #9a6847;
+}
+
+#final p {
+  font-weight: 700;
+  margin: 20px;
+  line-height: 1.8;
+}
+
+.confetti {
+  position: fixed;
+  top: -30px;
+  z-index: 99;
+  pointer-events: none;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@media(max-width: 400px) {
+  .note-container { gap: 9px; }
+  .note { padding: 17px 8px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-decoration"></div>
+
+  <span class="sticker" style="top:12%;left:12%">🌼</span>
+  <span class="sticker" style="top:20%;right:12%">♡</span>
+  <span class="sticker" style="bottom:15%;left:15%">⭐</span>
+  <span class="sticker" style="bottom:12%;right:12%">🌷</span>
+
+  <div class="intro-content">
+    <div style="font-size:45px">🎀 🌼 🐾</div>
+    <h1>hieee!!</h1>
+    <p>A tiny little surprise is waiting for you...</p>
+    <button class="start-btn" onclick="startCat()">
+      tap here ♡
+    </button>
+    <p style="margin-top:25px;font-size:13px">
+      made with a little sunshine ✨
+    </p>
+  </div>
+</section>
+
+<!-- REAL CAT SCENE -->
+<section id="catScene">
+  <h2 class="cat-heading">Waittt... who's that? 🐾</h2>
+  <p class="cat-subtitle">Someone found a little ball of yarn!</p>
+
+  <span class="paw" style="top:35%;left:20%">🐾</span>
+  <span class="paw" style="top:70%;right:20%">🐾</span>
+
+  <div class="yarn" id="yarn"></div>
+
+  <img
+    class="cat-photo"
+    id="catPhoto"
+    src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&h=600&fit=crop"
+    alt="A real adorable kitten"
+  >
+</section>
+
+<!-- REVEAL -->
+<section id="reveal">
+  <span class="sticker" style="top:10%;left:12%">🌸</span>
+  <span class="sticker" style="bottom:15%;right:12%">🦋</span>
+
+  <div style="font-size:50px">🌷 🧸 🌷</div>
+  <h1>hiee beautiful...</h1>
+  <p>
+    Just a little reminder<br>
+    that the world has lovely things<br>
+    waiting for you. ♡
+  </p>
+  <div class="reveal-heart">💗</div>
+  <p>Let's uplift your mood...</p>
+
+  <button class="next-btn" onclick="showMusic()">
+    play a little music 🎵
+  </button>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <div style="font-size:45px">🎧 ☁️ 🎀</div>
+  <h1>A little melody...</h1>
+  <p>
+    Take a little break.<br>
+    Let the music do its magic. ♡
+  </p>
+
+  <!-- Spotify embed: Xadhu Kotha -->
+  <iframe
+    class="spotify"
+    src="https://open.spotify.com/embed/track/4WfPVpTaDZBowV4l0wj2bx?utm_source=generator&theme=0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+
+  <button class="next-btn music-next" onclick="showGarden()">
+    there's more happiness 🌻
+  </button>
+</section>
+
+<!-- GARDEN -->
+<section id="garden">
+  <div style="font-size:40px">🦋 🌼 🦋</div>
+  <h1>A little happiness garden</h1>
+  <p class="garden-text">
+    Pick a tiny envelope.<br>
+    It has something nice to tell you. 💌
+  </p>
+
+  <div class="flowers">🌷 🌻 🌼 🌸 🌺</div>
+
+  <div class="note-container">
+
+    <button class="note" onclick="openNote(this,1)">
+      <span>💌</span>
+      Open me
+      <div class="note-message">
+        You're doing better than you think. ♡
+      </div>
+    </button>
+
+    <button class="note" onclick="openNote(this,2)">
+      <span>🎀</span>
+      A tiny note
+      <div class="note-message">
+        You deserve good things and happy days.
+      </div>
+    </button>
+
+    <button class="note" onclick="openNote(this,3)">
+      <span>🌷</span>
+      Another one
+      <div class="note-message">
+        It's okay to take things one day at a time.
+      </div>
+    </button>
+
+    <button class="note" onclick="openNote(this,4)">
+      <span>⭐</span>
+      One more!
+      <div class="note-message">
+        Never underestimate your own little magic.
+      </div>
+    </button>
+
+  </div>
+
+  <button class="next-btn" onclick="showFinal()">
+    one last surprise ♡
+  </button>
+</section>
+
+<!-- FINAL -->
+<section id="final">
+  <div style="font-size:60px">🌈 🧸 🌼</div>
+  <h1>Keep shining!</h1>
+  <p>
+    May your days have more laughter,<br>
+    unexpected little joys,<br>
+    and beautiful memories.
+    <br><br>
+    Sending a whole universe of sunshine! ♡
+  </p>
+  <button class="next-btn" onclick="celebrate()">
+    more happiness!! 🎉
+  </button>
+  <p style="font-size:13px;margin-top:35px">
+    made with ♡ just for a smile
+  </p>
+</section>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll(
+    '#intro, #catScene, #reveal, #music, #garden, #final'
+  ).forEach(section => {
+    section.style.display = 'none';
+  });
+
+  const section = document.getElementById(id);
+
+  if (id === 'intro' || id === 'catScene') {
+    section.style.display = 'block';
+  } else {
+    section.style.display = 'flex';
+  }
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function startCat() {
+  showSection('catScene');
+
+  const cat = document.getElementById('catPhoto');
+  const yarn = document.getElementById('yarn');
+
+  // Restart the kitten animation
+  cat.style.animation = 'none';
+  yarn.classList.remove('grow');
+
+  void cat.offsetWidth;
+
+  cat.style.animation = 'catRun 5s ease-in-out forwards';
+
+  // Grow the yarn ball
+  setTimeout(() => {
+    yarn.classList.add('grow');
+  }, 1800);
+
+  // Reveal the next screen
+  setTimeout(() => {
+    showSection('reveal');
+  }, 6800);
+}
+
+function showMusic() {
+  showSection('music');
+}
+
+function showGarden() {
+  showSection('garden');
+}
+
+function openNote(button) {
+  const message = button.querySelector('.note-message');
+
+  if (message.style.display === 'block') {
+    message.style.display = 'none';
+  } else {
+    message.style.display = 'block';
+    button.style.background = '#fff0d9';
+  }
+}
+
+function showFinal() {
+  showSection('final');
+  celebrate();
+}
+
+function celebrate() {
+  const symbols = ['🌸','💗','⭐','🌼','🎀','✨','🦋'];
+
+  for (let i = 0; i < 45; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti';
+    piece.textContent = symbols[
+      Math.floor(Math.random() * symbols.length)
+    ];
+
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.animationDuration = (2 + Math.random() * 3) + 's';
+    piece.style.fontSize = (18 + Math.random() * 20) + 'px';
+
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), 5500);
+  }
+}
+</script>
+
+</body>
+</html>
